@@ -4,6 +4,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 import Input, { TextArea } from './Input';
 import { modalAtom } from '~/lib/store';
@@ -17,6 +18,7 @@ type FormType = z.infer<typeof formValidation>;
 
 function FormPost() {
   const [, setOpen] = useAtom(modalAtom);
+  const router = useRouter();
 
   const {
     register,
@@ -36,6 +38,7 @@ function FormPost() {
       body: values.body,
       title: values.title,
     });
+    router.refresh();
     setOpen(false);
   };
 
