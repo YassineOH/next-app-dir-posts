@@ -1,5 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { GithubButton, GoogleButton } from '~/components/Buttons';
+import Navbar from '~/components/Navbar';
 import { authOptions } from '~/lib/auth';
 
 export default async function Home() {
@@ -18,5 +19,13 @@ export default async function Home() {
     );
   }
 
-  return <h1>hello</h1>;
+  return (
+    <>
+      {/* @ts-expect-error Server Component */}
+      <Navbar />
+      <main className='container mx-auto'>
+        <h1 className='my-12 text-center text-lg font-semibold'>welcome</h1>
+      </main>
+    </>
+  );
 }

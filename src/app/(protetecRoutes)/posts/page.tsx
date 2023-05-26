@@ -1,4 +1,10 @@
+import AddPost from '~/components/AddPost';
+
 function Posts() {
-  return <div>you should be logged</div>;
+  return (
+    <div className='w-full'>
+      <AddPost />
+    </div>
+  );
 }
 export default Posts;

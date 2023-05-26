@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 
 export function GoogleButton() {
   return (
@@ -22,6 +22,17 @@ export function GithubButton() {
     >
       <Image src='./github.svg' width={32} height={32} alt='google logo' />
       <span>Sign up with github</span>
+    </button>
+  );
+}
+
+export function LogoutButton() {
+  return (
+    <button
+      className='cursor-pointer rounded-md bg-red-600 px-4 py-2 text-white'
+      onClick={() => signOut()}
+    >
+      logout
     </button>
   );
 }
