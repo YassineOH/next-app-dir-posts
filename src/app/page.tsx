@@ -1,4 +1,5 @@
 import { getServerSession } from 'next-auth';
+import Link from 'next/link';
 import { GithubButton, GoogleButton } from '~/components/Buttons';
 import Navbar from '~/components/Navbar';
 import { authOptions } from '~/lib/auth';
@@ -25,6 +26,12 @@ export default async function Home() {
       <Navbar />
       <main className='container mx-auto'>
         <h1 className='my-12 text-center text-lg font-semibold'>welcome</h1>
+        <Link
+          href='/posts'
+          className='mx-auto block text-center text-lg text-teal-600 hover:underline'
+        >
+          See all Posts
+        </Link>
       </main>
     </>
   );

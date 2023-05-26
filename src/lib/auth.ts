@@ -21,4 +21,15 @@ export const authOptions: NextAuthOptions = {
     strategy: 'database',
   },
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          userId: user.id,
+        },
+      };
+    },
+  },
 };

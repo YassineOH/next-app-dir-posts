@@ -58,9 +58,10 @@ model VerificationToken {
 }
 
 model Post {
-  postId   String @id @default(cuid())
-  tilte    String
-  body     String
-  authorId String
-  author   User   @relation(fields: [authorId], references: [id])
+  postId    String   @id @default(cuid())
+  title     String
+  body      String
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
 }
