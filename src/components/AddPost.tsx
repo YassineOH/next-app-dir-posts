@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useAtom } from 'jotai';
+
 import Modal from './Modal';
 import FormPost from './FormPost';
+import { modalAtom } from '~/lib/store';
 
 function AddPost() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useAtom(modalAtom);
 
   return (
     <>

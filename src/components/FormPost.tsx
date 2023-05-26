@@ -1,11 +1,12 @@
 'use client';
-
+import { useAtom } from 'jotai';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
 import Input, { TextArea } from './Input';
+import { modalAtom } from '~/lib/store';
 
 const formValidation = z.object({
   title: z.string().nonempty('the title is required'),
@@ -15,6 +16,8 @@ const formValidation = z.object({
 type FormType = z.infer<typeof formValidation>;
 
 function FormPost() {
+  const [, setOpen] = useAtom(modalAtom);
+
   const {
     register,
     handleSubmit,
@@ -29,11 +32,11 @@ function FormPost() {
   });
 
   const handleMutate: SubmitHandler<FormType> = async (values) => {
-    const { data } = await axios.post('/api/posts', {
+    await axios.post('/api/posts', {
       body: values.body,
-      title: values.body,
+      title: values.title,
     });
-    console.log(data);
+    setOpen(false);
   };
 
   return (

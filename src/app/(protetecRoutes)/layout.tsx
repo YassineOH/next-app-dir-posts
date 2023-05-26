@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '~/lib/auth';
 
 import Navbar from '~/components/Navbar';
+import JotaiProvider from '~/components/JotaiProvider';
 
 interface Props {
   children: ReactNode;
@@ -17,11 +18,11 @@ async function Layout({ children }: Props) {
   }
 
   return (
-    <>
+    <JotaiProvider>
       {/* @ts-expect-error Server Component */}
       <Navbar />
       <main className='container mx-auto my-16'>{children}</main>
-    </>
+    </JotaiProvider>
   );
 }
 
