@@ -17,7 +17,7 @@ async function Post({ post }: Props) {
 
   return (
     <article className='flex w-full flex-col items-stretch gap-y-2 rounded-md bg-teal-50 p-5 shadow-md'>
-      <h4 className='text-xl font-semibold '> {post.title} </h4>
+      <h4 className='text-xl font-semibold capitalize'> {post.title} </h4>
       <p className=''> {post.body} </p>
       <br />
       {session?.user.userId === post.authorId && (

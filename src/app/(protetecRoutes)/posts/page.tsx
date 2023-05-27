@@ -7,10 +7,9 @@ async function Posts() {
   const posts = await prisma.post.findMany();
 
   return (
-    <div className='w-full'>
+    <div className='w-full space-y-4 text-center'>
       <AddPost />
-      <h2 className='my-1 text-center text-lg'>All posts</h2>
-      <div className='my-3 grid grid-cols-3 items-start gap-4'>
+      <div className='mx-auto my-3 grid  w-11/12 grid-cols-1  items-start gap-4 text-left md:w-full md:grid-cols-2 lg:grid-cols-3'>
         {posts.map((post) => {
           return (
             <>

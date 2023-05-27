@@ -22,3 +22,11 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 
   return NextResponse.json({ msg: 'posted updated' });
 }
+
+export async function DELETE(req: NextRequest, { params }: Params) {
+  const postId = params.slug;
+
+  await prisma.post.delete({ where: { postId } });
+
+  return NextResponse.json({ msg: 'posted deleted' });
+}

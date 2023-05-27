@@ -12,9 +12,10 @@ async function Navbar() {
         <div className='flex items-center gap-x-2'>
           <Image
             src={session?.user?.image ?? './user.svg'}
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             alt='user profile'
+            className='rounded-full'
           />
           <p className='text-lg font-semibold'>{session?.user?.name}</p>
         </div>
