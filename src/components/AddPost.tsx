@@ -4,10 +4,10 @@ import { useAtom } from 'jotai';
 
 import Modal from './Modal';
 import FormPost from './FormPost';
-import { modalAtom } from '~/lib/store';
+import { modalFormAtom } from '~/lib/store';
 
 function AddPost() {
-  const [open, setOpen] = useAtom(modalAtom);
+  const [open, setOpen] = useAtom(modalFormAtom);
 
   return (
     <>

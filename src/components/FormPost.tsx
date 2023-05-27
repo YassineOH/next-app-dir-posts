@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 import Input, { TextArea } from './Input';
-import { modalAtom } from '~/lib/store';
+import { modalFormAtom, postAtom, updatePostAtom } from '~/lib/store';
 
 const formValidation = z.object({
   title: z.string().nonempty('the title is required'),
@@ -17,7 +17,9 @@ const formValidation = z.object({
 type FormType = z.infer<typeof formValidation>;
 
 function FormPost() {
-  const [, setOpen] = useAtom(modalAtom);
+  const [, setOpen] = useAtom(modalFormAtom);
+  const [post] = useAtom(postAtom);
+  const [updatePost] = useAtom(updatePostAtom);
   const router = useRouter();
 
   const {
@@ -26,18 +28,25 @@ function FormPost() {
     formState: { errors },
   } = useForm<FormType>({
     defaultValues: {
-      title: '',
-      body: '',
+      title: post.title,
+      body: post.body,
     },
     resolver: zodResolver(formValidation),
     mode: 'onBlur',
   });
 
   const handleMutate: SubmitHandler<FormType> = async (values) => {
-    await axios.post('/api/posts', {
-      body: values.body,
-      title: values.title,
-    });
+    if (updatePost) {
+      await axios.patch(`/api/posts/${post.postId}`, {
+        body: values.body,
+        title: values.title,
+      });
+    } else {
+      await axios.post('/api/posts', {
+        body: values.body,
+        title: values.title,
+      });
+    }
     router.refresh();
     setOpen(false);
   };
@@ -53,7 +62,7 @@ function FormPost() {
         className='w-full rounded-md bg-teal-400 py-2 transition-all duration-300 ease-linear hover:scale-95'
         type='submit'
       >
-        submit
+        {updatePost ? 'Update' : 'Post'}
       </button>
     </form>
   );

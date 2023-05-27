@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
   const { body, title } = await req.json();
 
-  const newPost = await prisma.post.create({
+  await prisma.post.create({
     data: {
       body,
       title,
@@ -20,5 +20,5 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return NextResponse.json(newPost);
+  return NextResponse.json({ msg: 'post created' });
 }
