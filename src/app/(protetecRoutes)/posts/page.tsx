@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import AddPost from '~/components/AddPost';
-import LoadingPost from '~/components/LoadingPost';
 import Post from '~/components/Post';
 
 import { prisma } from '~/lib/prisma';
